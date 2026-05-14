@@ -1,0 +1,41 @@
+# [LibrarySystem - .gitignore]
+
+# ─── Derlenmiş Java Dosyaları ───
+*.class
+*.jar
+*.war
+*.ear
+
+# ─── Build Çıktıları ───
+out/
+build/
+target/
+bin/
+
+# ─── IntelliJ IDEA ───
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ─── VS Code ───
+.vscode/
+*.code-workspace
+
+# ─── Eclipse ───
+.classpath
+.project
+.settings/
+
+# ─── macOS ───
+.DS_Store
+.AppleDouble
+
+# ─── Windows ───
+Thumbs.db
+Desktop.ini
+
+# ─── Hassas Bilgiler (Şimdi yok ama alışkanlık için) ───
+*.env
+secrets.properties
+config.local.properties
