@@ -39,6 +39,10 @@ public class Library {
             System.out.println(book);
         }
     }
+    
+    public int getTotalBooks() {
+        return books.size();
+    }
 
     // --- Üye İşlemleri ---
     public void addMember(Member member) {
