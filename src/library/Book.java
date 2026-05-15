@@ -6,13 +6,17 @@ public class Book{
     private String title;
     private String author;
     private boolean isAvailable;
+    private String isbn;
+
     // Constructor 
-    public Book(int id, String title, String author){
+    public Book(int id, String title, String author, String isbn){
         this.id = id;
         this.title = title;
         this.author = author;
         this.isAvailable = true; // A new book is available for default 
+        this.isbn = isbn;
     }
+
     // Getters 
     public int getId(){
         return id;
@@ -26,11 +30,16 @@ public class Book{
     public boolean isAvailable(){
         return isAvailable;
     }
+    public String getIsbn(){
+        return isbn;
+    }
+
+
     // toString
     @Override 
     public String toString(){
         String availability = isAvailable ? "Available" : "Borrowed";
-        String text = String.format("[%d] \"%s\" - %s (%s)", id, title, author, availability);
+        String text = String.format("[%d] \"%s\" - %s | ISBN: %s (%s)", id, title, author, isbn, availability);
         return text; 
     }
 }

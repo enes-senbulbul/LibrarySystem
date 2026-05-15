@@ -1,18 +1,15 @@
-// %% [LibrarySystem - Library Sınıfı]
-// Kitap ve üye yönetimini koordine eden ana sınıf
-
 package library;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    // --- Alanlar ---
+    // Fields
     private String name;
     private List<Book> books;
     private List<Member> members;
 
-    // --- Constructor ---
+    // Constructor 
     public Library(String name) {
         this.name = name;
         this.books = new ArrayList<>();
@@ -23,6 +20,15 @@ public class Library {
     public void addBook(Book book) {
         books.add(book);
         System.out.println("Kitap eklendi: " + book.getTitle());
+    }
+    
+    public Book findBookById(int id) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+                return book;
+            }
+        }
+        return null; 
     }
 
     public void listBooks() {

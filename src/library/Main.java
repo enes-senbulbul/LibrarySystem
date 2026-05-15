@@ -6,7 +6,7 @@ package library;
 public class Main {
     public static void main(String[] args) {
         // Kütüphane oluştur
-        Library library = new Library("İTÜ Kütüphanesi");
+        Library library = new Library("ITU Kutuphanesi");
 
         // Kitaplar ekle
         library.addBook(new Book(1, "Clean Code", "Robert C. Martin"));
@@ -14,7 +14,7 @@ public class Main {
         library.addBook(new Book(3, "The Pragmatic Programmer", "Hunt & Thomas"));
 
         // Üyeler ekle
-        library.addMember(new Member(1, "Ahmet Yılmaz", "ahmet@itu.edu.tr"));
+        library.addMember(new Member(1, "Ahmet Yilmaz", "ahmet@itu.edu.tr"));
         library.addMember(new Member(2, "Zeynep Kaya", "zeynep@itu.edu.tr"));
 
         // Listele
