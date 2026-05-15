@@ -2,6 +2,7 @@ package library;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Library {
     // Fields
@@ -21,14 +22,11 @@ public class Library {
         books.add(book);
         System.out.println("Kitap eklendi: " + book.getTitle());
     }
-    
-    public Book findBookById(int id) {
-        for (Book book : books) {
-            if (book.getId() == id) {
-                return book;
-            }
-        }
-        return null; 
+
+    public Optional<Book> findBookById(int id) {
+        return books.stream()
+                    .filter(b -> b.getId() == id)
+                    .findFirst();
     }
 
     public void listBooks() {
