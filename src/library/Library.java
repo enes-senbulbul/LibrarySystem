@@ -9,12 +9,14 @@ public class Library {
     private String name;
     private List<Book> books;
     private List<Member> members;
+    private List<Loan> loans;
 
     // Constructor 
     public Library(String name) {
         this.name = name;
         this.books = new ArrayList<>();
         this.members = new ArrayList<>();
+        this.loans = new ArrayList<>();
     }
 
     // --- Kitap İşlemleri ---
@@ -39,7 +41,7 @@ public class Library {
             System.out.println(book);
         }
     }
-    
+
     public int getTotalBooks() {
         return books.size();
     }
@@ -59,5 +61,41 @@ public class Library {
         for (Member member : members) {
             System.out.println(member);
         }
+    }
+
+    // --- Loan İşlemleri ---
+    public Loan borrowBook(Member member, Book book){ // Kitap ödünç ver
+        if(!book.isAvailable()){
+            System.out.println("Kitap su an oduncte: "+ book.getTitle());
+            return null;
+        }
+        book.setAvailable(false);
+        Loan loan = new Loan(book, member);
+        loans.add(loan);
+        System.out.println("Odunc verildi: "+book.getTitle()
+            + " → " + member.getName()
+            + " (İade: " + loan.getDueDate() + ")");
+        return loan;
+    }
+    public void returnBook(Member member, Book book){ // Kitabi iade al
+        Optional<Loan> activeLoan = loans.stream()
+            .filter(l -> l.getBook() == book
+                      && l.getMember() == member
+                      && !l.isReturned())
+            .findFirst();
+
+        if (activeLoan.isEmpty()) {
+            System.out.println("❌ Aktif odunc kaydi bulunamadi..");
+            return;
+        }
+        activeLoan.get().returnBook();
+        System.out.println("✅ İade alindi: " + book.getTitle()
+            + " ← " + member.getName());
+    }
+    public void listActiveLoans(){  // Tüm Aktif Ödünçleri Listele
+        System.out.println("\n── Aktif Oduncler ──");
+        loans.stream()
+             .filter(l -> !l.isReturned())
+             .forEach(System.out::println);
     }
 }
