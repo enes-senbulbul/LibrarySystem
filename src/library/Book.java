@@ -34,6 +34,9 @@ public class Book{
         return isbn;
     }
 
+    public void setAvailable(boolean available) {
+        this.isAvailable = available;
+    }
 
     // toString
     @Override 
