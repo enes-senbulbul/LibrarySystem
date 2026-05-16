@@ -23,6 +23,7 @@ public class Member{
     public String getName()  { return name; }
     public String getEmail() { return email; }
 
+    // --- Loan Methods ---
     public boolean canBorrow() {
         return activeLoanCount < MAX_LOAN_COUNT;
     }
@@ -30,6 +31,10 @@ public class Member{
     public void incrementLoanCount() { activeLoanCount++; }
     public void decrementLoanCount() { activeLoanCount--; }
     public int getActiveLoanCount()  { return activeLoanCount; }
+
+    public String getLoanSummary(){
+        return String.format("%s — Aktif odunc: %d/3", name, activeLoanCount);
+    }
 
     // --- toString ---
     @Override
