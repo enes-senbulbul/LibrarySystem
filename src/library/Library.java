@@ -64,18 +64,23 @@ public class Library {
     }
 
     // --- Loan İşlemleri ---
-    public Loan borrowBook(Member member, Book book){ // Kitap ödünç ver
+    public Optional<Loan> borrowBook(Member member, Book book){ // Kitap ödünç ver
         if(!book.isAvailable()){
             System.out.println("Kitap su an oduncte: "+ book.getTitle());
-            return null;
+            return Optional.empty();
+        }
+        if(!member.canBorrow()){
+            System.out.println("Uye limite ulastı: "+ member.getName());
+            return Optional.empty();
         }
         book.setAvailable(false);
+        member.incrementLoanCount();
         Loan loan = new Loan(book, member);
         loans.add(loan);
         System.out.println("Odunc verildi: "+book.getTitle()
             + " → " + member.getName()
             + " (İade: " + loan.getDueDate() + ")");
-        return loan;
+        return Optional.of(loan);
     }
     public void returnBook(Member member, Book book){ // Kitabi iade al
         Optional<Loan> activeLoan = loans.stream()
