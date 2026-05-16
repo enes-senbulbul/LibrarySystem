@@ -37,6 +37,9 @@ public class Book{
     public void setAvailable(boolean available) {
         this.isAvailable = available;
     }
+    public String getAvailabilityStatus(){
+        return isAvailable ? "Musait" : "Oduncte";
+    }
 
     // toString
     @Override 
