@@ -66,10 +66,13 @@ public class Library {
     // --- Loan İşlemleri ---
     public Loan borrowBook(Member member, Book book){ // Kitap ödünç ver
         if(!book.isAvailable()){
-            System.out.println("Kitap su an oduncte: "+ book.getTitle());
-            return null;
+            throw new IllegalStateException("Kitap musait degil: "+ book.getTitle());
+        }
+        if(!member.canBorrow()){
+            throw new IllegalStateException("Uye odunc limitine ulasti: "+member.getName());
         }
         book.setAvailable(false);
+        member.incrementLoanCount();
         Loan loan = new Loan(book, member);
         loans.add(loan);
         System.out.println("Odunc verildi: "+book.getTitle()
