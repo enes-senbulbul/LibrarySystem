@@ -64,14 +64,12 @@ public class Library {
     }
 
     // --- Loan İşlemleri ---
-    public Optional<Loan> borrowBook(Member member, Book book){ // Kitap ödünç ver
+    public Loan borrowBook(Member member, Book book){ // Kitap ödünç ver
         if(!book.isAvailable()){
-            System.out.println("Kitap su an oduncte: "+ book.getTitle());
-            return Optional.empty();
+            throw new IllegalStateException("Kitap musait degil: "+ book.getTitle());
         }
         if(!member.canBorrow()){
-            System.out.println("Uye limite ulastı: "+ member.getName());
-            return Optional.empty();
+            throw new IllegalStateException("Uye odunc limitine ulasti: "+member.getName());
         }
         book.setAvailable(false);
         member.incrementLoanCount();
@@ -80,7 +78,7 @@ public class Library {
         System.out.println("Odunc verildi: "+book.getTitle()
             + " → " + member.getName()
             + " (İade: " + loan.getDueDate() + ")");
-        return Optional.of(loan);
+        return loan;
     }
     public void returnBook(Member member, Book book){ // Kitabi iade al
         Optional<Loan> activeLoan = loans.stream()
