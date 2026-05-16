@@ -101,4 +101,22 @@ public class Library {
              .filter(l -> !l.isReturned())
              .forEach(System.out::println);
     }
+
+    // --- Arama İşlemleri ---
+    public List<Book> searchBooks(String keyword){
+        String lower = keyword.toLowerCase();
+        List<Book> booksMatched = books.stream().filter(
+            b -> b.getTitle().toLowerCase().contains(lower) || b.getAuthor().toLowerCase().contains(lower)
+            ).collect(java.util.stream.Collectors.toList());
+        return booksMatched;
+    }
+    public void printSearchResults(String keyword){
+        List<Book> results = searchBooks(keyword);
+        System.out.println("\n── Arama: \"" + keyword + "\" ──");
+        if (results.isEmpty()) {
+            System.out.println("Sonuc bulunamadi.");
+            return;
+        }
+        results.forEach(System.out::println);
+    }
 }

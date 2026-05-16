@@ -7,6 +7,7 @@ public class Book{
     private String author;
     private boolean isAvailable;
     private String isbn;
+    private String genre;
 
     // Constructor 
     public Book(int id, String title, String author, String isbn){
@@ -15,6 +16,7 @@ public class Book{
         this.author = author;
         this.isAvailable = true; // A new book is available for default 
         this.isbn = isbn;
+        this.genre = "Genel";
     }
 
     // Getters 
@@ -33,12 +35,19 @@ public class Book{
     public String getIsbn(){
         return isbn;
     }
+    public String getGenre(){ 
+        return genre;
+    }
 
+    // Setters 
     public void setAvailable(boolean available) {
         this.isAvailable = available;
     }
     public String getAvailabilityStatus(){
         return isAvailable ? "Musait" : "Oduncte";
+    }
+    public void setGenre(String genre){
+        this.genre = genre;
     }
 
     // toString
