@@ -1,10 +1,13 @@
 package library;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Loan{
     // Constants 
     private static final int LOAN_PERIOD_DAYS = 14; // Standart ödünç süresi
+    private static final double DAILY_FINE_RATE = 0.50;   // TL/gün
+
     // Fields
     private Book book;
     private Member member;
@@ -36,6 +39,14 @@ public class Loan{
     public boolean isOverdue(){
         return !returned && LocalDate.now().isAfter(dueDate);
     }
+    public double calculateFine() {
+        if (!isOverdue()) {
+            return 0.0;
+        }
+        long daysOverdue = ChronoUnit.DAYS.between(dueDate, LocalDate.now());
+        return daysOverdue * DAILY_FINE_RATE;
+    }
+
     @Override
     public String toString() {
         return String.format(
