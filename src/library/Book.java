@@ -1,6 +1,11 @@
 package library;
 
 public class Book{
+    public enum Category {
+        PROGRAMMING, MATHEMATICS, SCIENCE,
+        LITERATURE, HISTORY, GENERAL
+    }
+
     // Fields 
     private int id;
     private String title;
@@ -8,6 +13,7 @@ public class Book{
     private boolean isAvailable;
     private String isbn;
     private String genre;
+    private Category category;
 
     // Constructor 
     public Book(int id, String title, String author, String isbn){
@@ -17,6 +23,7 @@ public class Book{
         this.isAvailable = true; // A new book is available for default 
         this.isbn = isbn;
         this.genre = "Genel";
+        this.category = Category.GENERAL;
     }
 
     // Getters 
@@ -38,6 +45,7 @@ public class Book{
     public String getGenre(){ 
         return genre;
     }
+    public Category getCategory()  { return category; }
 
     // Setters 
     public void setAvailable(boolean available) {
@@ -49,6 +57,7 @@ public class Book{
     public void setGenre(String genre){
         this.genre = genre;
     }
+    public void setCategory(Category category)  { this.category = category; }
 
     // toString
     @Override 
