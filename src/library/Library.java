@@ -102,6 +102,14 @@ public class Library {
              .filter(l -> !l.isReturned())
              .forEach(System.out::println);
     }
+    public void listOverdueLoans(){
+        System.out.println("\n── Gecikmis Oduncler ──");
+        boolean found = loans.stream().filter(Loan::isOverdue).peek(System.out::println)
+        .findAny().isPresent();
+        if(!found){
+            System.out.println("Gecikmis odunc yok.");
+        }
+    }
 
     // --- Arama İşlemleri ---
     public List<Book> searchBooks(String keyword){
