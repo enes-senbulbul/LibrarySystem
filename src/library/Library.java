@@ -121,8 +121,13 @@ public class Library {
 
     public void printFineReport(Member member) {
         double total = getTotalFines(member);
+        if (total == 0.0) {
+            System.out.printf("%s: Gecikmiş ödünç cezası yok.%n",
+                member.getName());
+            return;
+        }
         System.out.printf(
-            "%s toplam ceza: %.2f TL%n",
+            "%s toplam gecikme cezası: %.2f TL%n",
             member.getName(),
             total
         );
