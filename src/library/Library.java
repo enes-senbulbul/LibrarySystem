@@ -111,6 +111,28 @@ public class Library {
         }
     }
 
+    // --- Overdue Fines ---
+    public double getTotalFines(Member member) {
+        return loans.stream()
+                    .filter(l -> l.getMember() == member)
+                    .mapToDouble(Loan::calculateFine)
+                    .sum();
+    }
+
+    public void printFineReport(Member member) {
+        double total = getTotalFines(member);
+        if (total == 0.0) {
+            System.out.printf("%s: Gecikmiş ödünç cezası yok.%n",
+                member.getName());
+            return;
+        }
+        System.out.printf(
+            "%s toplam gecikme cezası: %.2f TL%n",
+            member.getName(),
+            total
+        );
+    }
+
     // --- Arama İşlemleri ---
     public List<Book> searchBooks(String keyword){
         String lower = keyword.toLowerCase();
