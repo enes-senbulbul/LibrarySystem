@@ -92,6 +92,7 @@ public class Library {
             return;
         }
         activeLoan.get().returnBook();
+        member.decrementLoanCount();
         System.out.println("✅ İade alindi: " + book.getTitle()
             + " ← " + member.getName());
     }
